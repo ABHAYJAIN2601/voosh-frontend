@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { useNavigate ,Link} from 'react-router-dom'
 import { loginUser } from '../../Redux/useraction'
 import './LoginPage.css'
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
+
 function LoginPage (props) {
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
@@ -20,8 +23,26 @@ function LoginPage (props) {
       alert('Invalid Credentials')
     }
   }
+
+useGoogleOneTapLogin({
+  onSuccess: credentialResponse => {
+    console.log(credentialResponse);
+  },
+  onError: () => {
+    console.log('Login Failed');
+  },
+});
   return (
     <div>
+      <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+  useOneTap
+/>
       <div class='container'>
         <div class='login-body'>
           <div class='row align-items-center justify-content-center'>

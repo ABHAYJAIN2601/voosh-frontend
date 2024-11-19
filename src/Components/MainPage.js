@@ -12,12 +12,21 @@ import SignUp from './SignUp'
 import Navbar from './Navbar/Navbar'
 import UserProfile from './UserProfile/UserProfile'
 import ProtectedRoute from './ProtectedRoute'
-import { getUserById } from '../Redux/useraction'
+import { getUserById, setPopMessage } from '../Redux/useraction'
 import setAuthToken from '../Redux/setAuth'
 import AddTask from './Task/AddTask/AddTask'
 import TaskList from './Task/TaskList/TaskList'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function MainPage (props) {
+  useEffect(()=>{
+    if(props.popMessage){
+      toast(props.popMessage);
+      props.setPopMessage('');
+    }
+  },[props.popMessage]);
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -41,6 +50,7 @@ function MainPage (props) {
   }, [props.isLoggedIn])
   return (
     <div className='App'>
+        <ToastContainer />
       <Navbar />
       {/* <Payment /> */}
       <Routes>
@@ -86,12 +96,14 @@ function MainPage (props) {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.isLoggedIn,
-    user: state.userDetails
+    user: state.userDetails,
+    popMessage: state.popMessage
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    getUserById: id => dispatch(getUserById(id))
+    getUserById: id => dispatch(getUserById(id)),
+    setPopMessage: message => dispatch(setPopMessage(message))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage)

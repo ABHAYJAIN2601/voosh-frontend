@@ -11,7 +11,8 @@ import {
   GET_FILTER_TASKS,
   GET_TASKS,
   GET_USER_TASKS,
-  SORT_TASKS
+  SORT_TASKS,
+  POP_UP_MESSAGE
 } from './types'
 const initialState = {
   isLoggedIn: false,
@@ -19,7 +20,8 @@ const initialState = {
   taskData: {},
   taskLoading: true,
   tasksLoading: true,
-  tasks: []
+  tasks: [],
+  popMessage:''
 }
 
 const userReducer = (state = initialState, action) => {
@@ -36,7 +38,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: action.isLoggedIn
       }
-
+      case POP_UP_MESSAGE:
+        return {
+          ...state,
+          popMessage: action.payload
+        }
     case SET_CURRENT_USER:
       localStorage.setItem('user', action.payload)
       return {

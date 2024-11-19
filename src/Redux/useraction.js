@@ -10,11 +10,11 @@ import {
   UPDATE_USER,
   GET_LIST,
   GET_FILTER_TASKS,
-  CREATE_LIST,
   ADD_TASK,
   DELETE_TASK,
   EDIT_TASK,
   GET_TASKS,
+  POP_UP_MESSAGE,
 } from './types'
 
 export const signupUser = (email, password, name) => {
@@ -165,9 +165,17 @@ export const addTask = task => {
           type: ADD_TASK,
           payload: res.data
         })
+        dispatch({
+          type:POP_UP_MESSAGE,
+          payload:"Task Added!!"
+        })
       })
       .catch(err => {
         console.log(err)
+        dispatch({
+          type:POP_UP_MESSAGE,
+          payload:err.response.data.message
+        })
       })
   }
 }
@@ -188,6 +196,10 @@ export const updateUser = (id,data) => {
           dispatch({
             type: UPDATE_USER,
             payload: res.data
+          })
+          dispatch({
+            type:POP_UP_MESSAGE,
+            payload:"Profile Updated!!"
           })
         })
         .catch((err) => {
@@ -245,6 +257,10 @@ export const editTask = (id, task) => {
           type: EDIT_TASK,
           payload: { id, task:res.data }
         })
+        dispatch({
+          type:POP_UP_MESSAGE,
+          payload:"Task Updated!!"
+        })
       })
       .catch(err => {
         console.log(err)
@@ -287,15 +303,6 @@ export const getFilterTasks = (searchText, filter) => {
       .catch(err => {
         console.log(err)
       })
-  }
-}
-
-export const createList = data => {
-  return function (dispatch) {
-    dispatch({
-      type: CREATE_LIST,
-      payload: data
-    })
   }
 }
 export const getUserById = id => {
@@ -348,3 +355,12 @@ export const moveTask = (taskId, newStatus) => ({
   type: 'MOVE_TASK',
   payload: { taskId, newStatus },
 });
+
+export const setPopMessage = (message) => {
+  return function (dispatch) {
+    dispatch({
+      type: POP_UP_MESSAGE,
+      payload: message
+    })
+  }
+}

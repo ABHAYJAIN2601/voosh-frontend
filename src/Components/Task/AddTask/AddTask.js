@@ -59,14 +59,10 @@ const AddTask = props => {
   };
 
 
-  const handleModalToggle = () => {
-    setModal(!modal);
-    props.getRevision(id);
-  };
-
   return (
     <div className='add-task-container'>
       <div className='add-task-form'>
+        <h1>Add Task</h1>
         <input
           type='text'
           name='title'

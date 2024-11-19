@@ -4,6 +4,7 @@ import store from './Redux/store';
 import { BrowserRouter} from 'react-router-dom';
 import MainPage from './Components/MainPage';
 import 'bootstrap/dist/css/bootstrap.css';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App () {
 
@@ -12,7 +13,9 @@ function App () {
      
     <BrowserRouter>
     <div className='App'>
-     <MainPage/>
+    <GoogleOAuthProvider clientId="<your_client_id>"> <MainPage/></GoogleOAuthProvider>;
+
+    
     </div>
     </BrowserRouter>
     </Provider>

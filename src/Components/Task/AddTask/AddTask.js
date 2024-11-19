@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import './AddTask.css'
-import { addTask, getTaskById ,editTask} from '../../Redux/useraction'
+import { addTask, getTaskById ,editTask} from '../../../Redux/useraction'
 import { useParams } from 'react-router-dom'
 
 const AddTask = props => {

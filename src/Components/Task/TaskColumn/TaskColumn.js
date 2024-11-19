@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import TaskCard from './TaskCard';
+import TaskCard from '../TaskCard/TaskCard';
+import './TaskColumn.css';
 
 const TaskColumn = ({ status, tasks, moveTask }) => {
   const [{ isOver }, drop] = useDrop(() => ({
@@ -14,15 +15,14 @@ const TaskColumn = ({ status, tasks, moveTask }) => {
   return (
     <div
       ref={drop}
-      className="task-column"
-      style={{
-        backgroundColor: isOver ? '#f0f8ff' : '#f8f9fa',
-      }}
+      className={`task-column ${isOver ? 'is-over' : ''}`}
     >
       <h2 className="task-column-title">{status.toUpperCase()}</h2>
-      {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
-      ))}
+      <div className="task-column-content">
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,97 @@
+/* TaskColumn.css */
+
+/* Base styling for the task column */
+.task-column {
+    flex: 1; /* Allows columns to take equal space */
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 250px; /* Ensures columns don’t get too narrow */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for the column */
+  .task-column:hover {
+    background-color: #f0f8ff;
+  }
+  
+  /* Title styling */
+  .task-column-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+  }
+  
+  /* Scrollable task list */
+  .task-column-content {
+    flex: 1; /* Fills remaining space in the column */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f8f9fa; /* For Firefox */
+  }
+  
+  /* Custom scrollbar styling for WebKit */
+  .task-column-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .task-column-content::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 10px;
+  }
+  
+  .task-column-content::-webkit-scrollbar-track {
+    background-color: #f8f9fa;
+  }
+  
+  /* Space between task cards */
+  .task-column-content .task-card {
+    margin-bottom: 10px;
+  }
+  
+  .task-column-content .task-card:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Active drop zone styling */
+  .task-column.is-over {
+    background-color: #e3f2fd;
+  }
+  
+  /* Responsive layout for smaller screens */
+  @media (max-width: 768px) {
+    .task-board {
+      flex-direction: column; /* Stack columns vertically */
+      gap: 20px; /* Add space between columns */
+    }
+  
+    .task-column {
+      min-width: 100%; /* Full width for columns on small screens */
+    }
+  }
+  
+  /* Additional responsiveness for very small screens */
+  @media (max-width: 480px) {
+    .task-column {
+      padding: 8px;
+    }
+  
+    .task-column-title {
+      font-size: 16px;
+    }
+  
+    .task-column-content::-webkit-scrollbar {
+      width: 6px; /* Thinner scrollbar on small screens */
+    }
+  }

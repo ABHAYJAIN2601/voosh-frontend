@@ -4,7 +4,13 @@
     width: 80%;
     margin: 0 auto;
 }
-
+.author-avatar{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: 10px;
+  border: 2px solid rgb(40, 65, 249);
+}
 /* Reset default styles for the tab component */
 .tab-container {
     box-sizing: border-box;
@@ -61,3 +67,39 @@
     margin-top: 10px;
     font-size:18px
   }
+  /* Center the avatar selector and align avatars properly */
+.avatar-selector {
+  margin-top: 20px;
+  text-align: center; /* Center the entire section */
+}
+
+.avatar-selector p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.avatar-options {
+  display: flex;
+  justify-content: center; /* Center the avatars horizontally */
+  gap: 15px; /* Add spacing between avatars */
+  flex-wrap: wrap; /* Ensure avatars wrap if the screen width is small */
+}
+
+.avatar-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border 0.2s ease;
+}
+
+.avatar-option:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+  border: 2px solid #007bff; /* Highlight border on hover */
+}
+
+.avatar-option.selected {
+  border: 2px solid #007bff; /* Highlight selected avatar */
+}

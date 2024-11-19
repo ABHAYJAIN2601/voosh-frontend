@@ -1,96 +1,108 @@
-import { React, useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import './UserProfile.css'
-import { updateUser } from '../../Redux/useraction'
-const UserProfile = props => {
- 
-  useEffect(() => {}, [props.user])
-  const [formData, setFormData] = useState({})
-  const onChange = e => {
-   
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import './UserProfile.css';
+import { updateUser } from '../../Redux/useraction';
 
-  const [activeTab, setActiveTab] = useState(0)
+const UserProfile = (props) => {
+  const [formData, setFormData] = useState({});
+  const [activeTab, setActiveTab] = useState(1);
 
-  const handleTabClick = tabIndex => {
-    setActiveTab(tabIndex)
-  }
-  
+  useEffect(() => {
+    setFormData({
+      ...props.user,
+      avatar: props.user.avatar || 1, // Default avatar to 1 if not set
+    });
+  }, [props.user]);
+
+  const handleAvatarChange = (avatar) => {
+    setFormData({ ...formData, avatar });
+  };
+
+  const handleTabClick = (tabIndex) => {
+    setActiveTab(tabIndex);
+  };
+
   return (
-    <div className='profile-wrapper'>
+    <div className="profile-wrapper">
       <h1>User Profile</h1>
-      <div className='tab-container'>
-        <div className='tab-header'>
-         
+      <div className="tab-container">
+        <div className="tab-header">
           <div
             key={1}
             className={`tab-item ${1 === activeTab ? 'active' : ''}`}
             onClick={() => handleTabClick(1)}
           >
-            {'Profile'}
+            Profile
           </div>
           <div
             key={2}
             className={`tab-item ${2 === activeTab ? 'active' : ''}`}
             onClick={() => handleTabClick(2)}
           >
-            {'My Task'}
+            My Task
           </div>
           <div
             key={3}
             className={`tab-item ${3 === activeTab ? 'active' : ''}`}
             onClick={() => handleTabClick(3)}
           >
-            {'Drafts'}
+            Drafts
           </div>
         </div>
       </div>
-      {activeTab == 1 && (
-        <div>
+      {activeTab === 1 && (
+        <div className="profile-tab">
           <img
-            src='http://localhost:3001/man.png'
-            alt='profile'
-            className='author-avatar'
+            src={`http://localhost:3001/${props.user.avatar}.png`}
+            alt="profile"
+            className="author-avatar"
           />
-          <p>{props.user.username}</p>
+          <p>{props.user.name}</p>
           <p>{props.user.email}</p>
-          <input
-            type='text'
-            name='bio'
-            placeholder='Bio'
-            onChange={e => onChange(e)}
-            value={props.user.bio}
-          />
+         
+          <div className="avatar-selector">
+            <p>Select an Avatar:</p>
+            <div className="avatar-options">
+              {[...Array(9)].map((_, index) => {
+                const avatarNumber = index + 1;
+                return (
+                  <img
+                    key={avatarNumber}
+                    src={`http://localhost:3001/${avatarNumber}.png`}
+                    alt={`avatar-${avatarNumber}`}
+                    className={`avatar-option ${
+                      formData.avatar === avatarNumber ? 'selected' : ''
+                    }`}
+                    onClick={() => handleAvatarChange(avatarNumber)}
+                  />
+                );
+              })}
+            </div>
+          </div>
           <button
-            className='blog-topic'
-            onClick={() => props.updateUser(formData)}
+            className="task-topic"
+            onClick={() => props.updateUser(props.user.id,{avatar:formData.avatar})}
           >
             Update
           </button>
         </div>
       )}
-      {activeTab == 2 && (
-        <div>
-          <div />
-        </div>
-      )}
-      {activeTab == 3 && (
-        <div>
-         <div/>
-        </div>
-      )}
+      {activeTab === 2 && <div>Tasks content here...</div>}
+      {activeTab === 3 && <div>Drafts content here...</div>}
     </div>
-  )
-}
-const mapStateToProps = state => {
+  );
+};
+
+const mapStateToProps = (state) => {
   return {
-    user: state.userDetails
-  }
-}
-const dispatchStateToProps = dispatch => {
+    user: state.userDetails,
+  };
+};
+
+const dispatchStateToProps = (dispatch) => {
   return {
-    updateUser: data => dispatch(updateUser(data))
-  }
-}
-export default connect(mapStateToProps, dispatchStateToProps)(UserProfile)
+    updateUser: (id,data) => dispatch(updateUser(id,data)),
+  };
+};
+
+export default connect(mapStateToProps, dispatchStateToProps)(UserProfile);

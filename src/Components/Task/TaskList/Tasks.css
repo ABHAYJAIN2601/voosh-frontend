@@ -1,5 +1,4 @@
-/* Styling for the entire blog blog list container */
-.blogs-container {
+.tasks-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -9,8 +8,7 @@
     height: 20px;
     margin-right: 10px;
   }
-  /* Styling for individual blog blog cards */
-  .blog-card {
+  .task-card {
     border-bottom: 1px solid #e9e9e9;
     /* border-radius: 5px; */
     padding: 10px;
@@ -23,24 +21,24 @@
     padding: 20px;
   }
   
-  /* Styling for blog title */
-  .blog-title {
+  /* Styling for task title */
+  .task-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
     text-align: start;
   }
   
-  /* Styling for blog topic */
-  .blog-topic {
+  /* Styling for task topic */
+  .task-topic {
     font-size: 16px;
     color: #666;
     margin-bottom: 5px;
     text-align: start;
   }
   
-  /* Styling for blog featured image */
-  .blog-image {
+  /* Styling for task featured image */
+  .task-image {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
@@ -52,15 +50,15 @@
     display: flex;
     justify-content: space-between;
   }
-  /* Styling for blog content */
-  .blog-content {
+  /* Styling for task content */
+  .task-content {
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 10px;
   }
   
-  /* Styling for blog date and author */
-  .blog-meta {
+  /* Styling for task date and author */
+  .task-meta {
     font-size: 14px;
     color: #888;
   }
@@ -87,7 +85,7 @@
     border-radius: var(--bs-modal-border-radius);
     outline: 0;
   }
-  .blog-type{
+  .task-type{
     /* display: flex; */
     position: relative;
     align-items: center;

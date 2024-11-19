@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getTasks, editTask } from '../../Redux/useraction';
+import { getTasks, editTask } from '../../../Redux/useraction';
 import './TaskBoard.css';
-import TaskColumn from './TaskColumn';
+import TaskColumn from '../TaskColumn/TaskColumn';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 

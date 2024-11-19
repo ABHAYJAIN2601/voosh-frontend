@@ -20,7 +20,7 @@ import {
 export const signupUser = (email, password, name) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/signup',
+      url: 'http://localhost:3000/v1/auth/register',
       method: 'POST',
       data: {
         email: email,
@@ -53,16 +53,9 @@ export const signupUser = (email, password, name) => {
             isLoggedIn: true
           })
         }
-
-        // window.location.href = '/'
+        window.location.href = '/'
       })
       .catch(err => {
-        // dispatch()
-        // // showMessage("warning", err.response.data.message, 900)
-        // dispatch({
-        //   // type: SIGNUP_USER_ERROR,
-        //   payload: ''
-        // })
         console.log(err)
       })
   }
@@ -155,12 +148,12 @@ export const getTaskById = id => {
   }
 }
 
-export const addTask = blog => {
+export const addTask = task => {
   return function (dispatch) {
     var OPTIONS = {
       url: 'http://localhost:3000/v1/task',
       method: 'POST',
-      data: blog,
+      data: task,
       headers: {
         'content-type': 'application/json'
       }
@@ -170,7 +163,7 @@ export const addTask = blog => {
       .then(res => {
         dispatch({
           type: ADD_TASK,
-          payload: blog
+          payload: res.data
         })
       })
       .catch(err => {
@@ -179,28 +172,28 @@ export const addTask = blog => {
   }
 }
 
-export const updateUser = data => {
-  console.log(data)
+export const updateUser = (id,data) => {
   return function (dispatch) {
-    // var OPTIONS = {
-    //     url: "/blog/" + id,
-    //     method: "GET",
-    //     headers: {
-    //         "content-type": "application/json",
-    //     },
-    // };
+    var OPTIONS = {
+        url: "http://localhost:3000/v1/users/" + id,
+        method: "PATCH",
+        headers: {
+            "content-type": "application/json",
+        },
+        data:data
+    };
 
-    // axios(OPTIONS)
-    //     .then((res) => {
-
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-    dispatch({
-      type: UPDATE_USER,
-      payload: data
-    })
+    axios(OPTIONS)
+        .then((res) => {
+          dispatch({
+            type: UPDATE_USER,
+            payload: res.data
+          })
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    
   }
 }
 

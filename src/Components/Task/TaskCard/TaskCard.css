@@ -48,7 +48,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+  .task-card-btn a {
+    text-decoration: none;
+    color: white;
+  }
   .task-card-btn:hover {
     background-color: #0056b3;
   }

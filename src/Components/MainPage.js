@@ -14,8 +14,8 @@ import UserProfile from './UserProfile/UserProfile'
 import ProtectedRoute from './ProtectedRoute'
 import { getUserById } from '../Redux/useraction'
 import setAuthToken from '../Redux/setAuth'
-import AddTask from './Blog/AddTask'
-import TaskList from './Blog/TaskList'
+import AddTask from './Task/AddTask/AddTask'
+import TaskList from './Task/TaskList/TaskList'
 
 function MainPage (props) {
 

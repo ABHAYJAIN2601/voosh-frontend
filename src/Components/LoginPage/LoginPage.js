@@ -86,8 +86,6 @@ function LoginPage (props) {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    // addBlog: (newPost) => dispatch(addBlog(newPost)),
-    // deleteBlog: (id) => dispatch(deleteBlog(id)),
     loginUser: (username, password) => dispatch(loginUser(username, password))
   }
 }

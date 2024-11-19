@@ -2,11 +2,10 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 import "./TaskCard.css";
 import { Link } from 'react-router-dom';
-import { deleteTask } from '../../Redux/useraction';
+import { deleteTask } from '../../../Redux/useraction';
 const { connect } = require('react-redux')
 
 const TaskCard = (props) => {
-  console.log(props)
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'TASK',
     item: { id: props.task.id },
@@ -16,7 +15,6 @@ const TaskCard = (props) => {
   }));
 
   const deleteTask = (id)=>{
-    console.log(id)
     props.deleteTask(id);
   }
 
@@ -34,7 +32,7 @@ const TaskCard = (props) => {
       <p className="task-card-created">Created At: {props.task.createdAt}</p>
       <div className="task-card-actions">
         <button className="task-card-btn" onClick={()=>deleteTask(props.task.id)}>Delete</button>
-        <button className="task-card-btn"> <Link to={`/edit-task/` + props.task.id} className='blog-topic'>Edit</Link></button>
+        <button className="task-card-btn"> <Link to={`/edit-task/` + props.task.id}>Edit</Link></button>
        
         <button className="task-card-btn">View Details</button>
       </div>
@@ -44,9 +42,7 @@ const TaskCard = (props) => {
 
 const mapStateToProps = state => {
   return {
-    blogData: state.taskData,
     user: state.userDetails,
-    blogLoading: state.taskLoading
   }
 }
 const dispatchToProps = dispatch => {

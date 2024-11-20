@@ -24,7 +24,7 @@ const Navbar = (props) => {
       <li>
         <img
           className="navbar-profile"
-          src={`http://localhost:3001/${props.userAvatar ? props.userAvatar : '1'}.png`}
+          src={`http://54.152.123.170:3000/${props.userAvatar ? props.userAvatar : '1'}.png`}
           alt="user-profile"
         />
       </li>

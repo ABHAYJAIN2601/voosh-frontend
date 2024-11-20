@@ -20,7 +20,7 @@ import {
 export const signupUser = (email, password, name) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/auth/register',
+      url: 'http://54.152.123.170:3000/v1/auth/register',
       method: 'POST',
       data: {
         email: email,
@@ -64,7 +64,7 @@ export const signupUser = (email, password, name) => {
 export const loginUser = (username, password) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/auth/login',
+      url: 'http://54.152.123.170:3000/v1/auth/login',
       method: 'POST',
       data: {
         email: username,
@@ -124,7 +124,7 @@ export const logoutUser = () => {
 export const getTaskById = id => {
   return function (dispatch) {
     var OPTIONS = {
-      url: `http://localhost:3000/v1/task/${id}`,
+      url: `http://54.152.123.170:3000/v1/task/${id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -151,7 +151,7 @@ export const getTaskById = id => {
 export const addTask = task => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/task',
+      url: 'http://54.152.123.170:3000/v1/task',
       method: 'POST',
       data: task,
       headers: {
@@ -183,7 +183,7 @@ export const addTask = task => {
 export const updateUser = (id,data) => {
   return function (dispatch) {
     var OPTIONS = {
-        url: "http://localhost:3000/v1/users/" + id,
+        url: "http://54.152.123.170:3000/v1/users/" + id,
         method: "PATCH",
         headers: {
             "content-type": "application/json",
@@ -212,7 +212,7 @@ export const updateUser = (id,data) => {
 export const getTasks = () => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/task',
+      url: 'http://54.152.123.170:3000/v1/task',
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -243,7 +243,7 @@ export const getList = id => {
 export const editTask = (id, task) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/task/'+id,
+      url: 'http://54.152.123.170:3000/v1/task/'+id,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
@@ -273,13 +273,13 @@ export const getFilterTasks = (searchText, filter) => {
   let data = {}
 
   if (filter === 'Topic') {
-    url = 'http://localhost:3000/post/search/topic'
+    url = 'http://54.152.123.170:3000/post/search/topic'
     data = { topic: searchText }
   } else if (filter === 'Title') {
-    url = 'http://localhost:3000/post/search/title'
+    url = 'http://54.152.123.170:3000/post/search/title'
     data = { title: searchText }
   } else if (filter === 'Author') {
-    url = 'http://localhost:3000/post/search/author'
+    url = 'http://54.152.123.170:3000/post/search/author'
     data = { name: searchText }
   }
 
@@ -308,7 +308,7 @@ export const getFilterTasks = (searchText, filter) => {
 export const getUserById = id => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/users/' + id,
+      url: 'http://54.152.123.170:3000/v1/users/' + id,
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -331,7 +331,7 @@ export const getUserById = id => {
 export const deleteTask = id => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://localhost:3000/v1/task/'+id,
+      url: 'http://54.152.123.170:3000/v1/task/'+id,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'

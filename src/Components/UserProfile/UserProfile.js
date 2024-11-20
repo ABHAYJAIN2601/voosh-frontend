@@ -53,7 +53,7 @@ const UserProfile = (props) => {
       {activeTab === 1 && (
         <div className="profile-tab">
           <img
-            src={`http://localhost:3001/${props.user.avatar}.png`}
+            src={`http://54.152.123.170:3000/${props.user.avatar}.png`}
             alt="profile"
             className="author-avatar"
           />
@@ -68,7 +68,7 @@ const UserProfile = (props) => {
                 return (
                   <img
                     key={avatarNumber}
-                    src={`http://localhost:3001/${avatarNumber}.png`}
+                    src={`http://54.152.123.170:3000/${avatarNumber}.png`}
                     alt={`avatar-${avatarNumber}`}
                     className={`avatar-option ${
                       formData.avatar === avatarNumber ? 'selected' : ''

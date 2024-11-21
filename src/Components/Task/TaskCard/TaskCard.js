@@ -29,7 +29,6 @@ const TaskCard = (props) => {
       <h3 className="task-card-title">{props.task.title}</h3>
       <p className="task-card-description">{props.task.description}</p>
       <p className="task-card-created">Due Date: {props.task.dueDate.split('T')[0]}</p>
-      <p className="task-card-created">Created At: {props.task.createdAt}</p>
       <div className="task-card-actions">
         <button className="task-card-btn" onClick={()=>deleteTask(props.task.id)}>Delete</button>
         <button className="task-card-btn"> <Link to={`/edit-task/` + props.task.id}>Edit</Link></button>

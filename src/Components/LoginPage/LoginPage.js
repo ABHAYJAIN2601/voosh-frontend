@@ -12,8 +12,7 @@ function LoginPage (props) {
   const [password, setPassword] = useState('')
   const handleLogin = () => {
     if (username && password) {
-      // alert('Login Successful');
-      console.log(props)
+
       localStorage.setItem('isLoggedIn', true)
       localStorage.setItem('username', username)
 
@@ -34,15 +33,7 @@ useGoogleOneTapLogin({
 });
   return (
     <div>
-      <GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-  useOneTap
-/>
+
       <div class='container'>
         <div class='login-body'>
           <div class='row align-items-center justify-content-center'>
@@ -95,6 +86,15 @@ useGoogleOneTapLogin({
                   <a id='signInBtn' class='submit d-block m-auto mb-5 ' onClick={handleLogin}>
                     Login
                   </a>
+                  <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+  useOneTap
+/>
                 </form>
                 <Link to='/signup'>Do not have an account ? Sign Up</Link>
               </div>

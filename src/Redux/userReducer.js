@@ -12,7 +12,7 @@ import {
   POP_UP_MESSAGE
 } from './types'
 const initialState = {
-  isLoggedIn:!!localStorage.getItem('token'), // Check token presence
+  isLoggedIn:false, // Check token presence
   userDetails: {},
   taskData: {},
   taskLoading: true,

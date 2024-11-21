@@ -13,12 +13,14 @@ import {
   EDIT_TASK,
   GET_TASKS,
   POP_UP_MESSAGE,
-} from './types'
+} from './types';
+
+const BASE_URL = 'http://54.152.123.170';
 
 export const signupUser = (email, password, name) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/auth/register',
+      url: `${BASE_URL}:3000/v1/auth/register`,
       method: 'POST',
       data: {
         email: email,
@@ -33,18 +35,10 @@ export const signupUser = (email, password, name) => {
 
     axios(OPTIONS)
       .then(res => {
-        // dispatch({
-        //   // type: SIGNUP_USER,
-        //   isLoggedIn: true
-        // })
-        // localStorage.setItem('token', res.data.token)
-        // setAuthenticationToken(res.data.token);
-        // dispatch(
-        //   setCurrentUser({
-        //     user: res.data.user
-        //     // token: jwt.decode(res.data.token),
-        //   })
-        // )
+       
+        const token = res.data.tokens.access.token;
+        localStorage.setItem('token', token)
+  
         if (res.data.status.code === 200) {
           dispatch({
             type: LOGIN_USER,
@@ -62,7 +56,7 @@ export const signupUser = (email, password, name) => {
 export const loginUser = (username, password) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/auth/login',
+      url: `${BASE_URL}:3000/v1/auth/login`,
       method: 'POST',
       data: {
         email: username,
@@ -78,7 +72,6 @@ export const loginUser = (username, password) => {
         const token = res.data.tokens.access.token;
         localStorage.setItem('token', token)
         setAuthenticationToken(token)
-        console.log(res.data.user,token)
         if (res.data.user) {
           dispatch(getUserById(res.data.user.id))
           dispatch({
@@ -88,12 +81,7 @@ export const loginUser = (username, password) => {
         }
       })
       .catch(err => {
-        // dispatch(showMessage("warning", "Invalid credentials", 900));
-        // dispatch({
-        //     type: LOGIN_USER_ERROR,
-        //     payload: "Invalid credentials",
-        //     isLoggedIn: false,
-        // });
+      
         console.log(err)
       })
   }
@@ -122,7 +110,7 @@ export const logoutUser = () => {
 export const getTaskById = id => {
   return function (dispatch) {
     var OPTIONS = {
-      url: `http://54.152.123.170:3000/v1/task/${id}`,
+      url: `${BASE_URL}:3000/v1/task/${id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -149,7 +137,7 @@ export const getTaskById = id => {
 export const addTask = task => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/task',
+      url: `${BASE_URL}:3000/v1/task`,
       method: 'POST',
       data: task,
       headers: {
@@ -182,7 +170,7 @@ export const addTask = task => {
 export const updateUser = (id,data) => {
   return function (dispatch) {
     var OPTIONS = {
-        url: "http://54.152.123.170:3000/v1/users/" + id,
+        url: `${BASE_URL}:3000/v1/users/` + id,
         method: "PATCH",
         headers: {
             "content-type": "application/json",
@@ -211,7 +199,7 @@ export const updateUser = (id,data) => {
 export const getTasks = () => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/task',
+      url: `${BASE_URL}:3000/v1/task`,
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -234,7 +222,7 @@ export const getTasks = () => {
 export const editTask = (id, task) => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/task/'+id,
+      url: `${BASE_URL}:3000/v1/task/`+id,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
@@ -264,7 +252,7 @@ export const editTask = (id, task) => {
 export const getUserById = id => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/users/' + id,
+      url: `${BASE_URL}:3000/v1/users/` + id,
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -287,7 +275,7 @@ export const getUserById = id => {
 export const deleteTask = id => {
   return function (dispatch) {
     var OPTIONS = {
-      url: 'http://54.152.123.170:3000/v1/task/'+id,
+      url: `${BASE_URL}:3000/v1/task/`+id,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'

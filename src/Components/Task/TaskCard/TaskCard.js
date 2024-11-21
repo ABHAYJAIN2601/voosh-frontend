@@ -33,8 +33,6 @@ const TaskCard = (props) => {
       <div className="task-card-actions">
         <button className="task-card-btn" onClick={()=>deleteTask(props.task.id)}>Delete</button>
         <button className="task-card-btn"> <Link to={`/edit-task/` + props.task.id}>Edit</Link></button>
-       
-        <button className="task-card-btn">View Details</button>
       </div>
     </div>
   );

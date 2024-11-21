@@ -8,14 +8,11 @@ import {
   UPDATE_USER,
   GET_USER_BY_ID,
   EDIT_TASK,
-  GET_FILTER_TASKS,
   GET_TASKS,
-  GET_USER_TASKS,
-  SORT_TASKS,
   POP_UP_MESSAGE
 } from './types'
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn:!!localStorage.getItem('token'), // Check token presence
   userDetails: {},
   taskData: {},
   taskLoading: true,
@@ -72,12 +69,6 @@ const userReducer = (state = initialState, action) => {
         tasksLoading: false
       }
 
-    case GET_USER_TASKS:
-      return {
-        ...state,
-        tasks: action.payload
-      }
- 
     case UPDATE_USER:
       return {
         ...state,
@@ -105,31 +96,6 @@ const userReducer = (state = initialState, action) => {
         tasks: state.tasks.filter(task => {
           return task.id !== action.payload
         })
-      }
-
-    case GET_FILTER_TASKS:
-      return {
-        ...state,
-        tasks: action.payload
-      }
-    case SORT_TASKS:
-      let sortedTask = [...state.tasks]
-      if (action.payload === 'Like') {
-        sortedTask.sort((a, b) => {
-          return b.likes.length - a.likes.length
-        })
-      } else if (action.payload === 'Comment') {
-        sortedTask.sort((a, b) => {
-          return b.comment.length - a.comment.length
-        })
-      } else if (action.payload === 'Views') {
-        sortedTask.sort((a, b) => {
-          return b.views - a.views
-        })
-      }
-      return {
-        ...state,
-        tasks: sortedTask
       }
     default:
       return state
